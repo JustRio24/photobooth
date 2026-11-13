@@ -2289,7 +2289,7 @@
         if(fxCanvas.width!==tw || fxCanvas.height!==th){ fxCanvas.width=tw; fxCanvas.height=th; }
       }
       var w=fxCanvas.width, h=fxCanvas.height, ctx=fxCanvas.getContext("2d");
-      ctx.setTransform(1,0,0,1); /* canvas dipakai ulang tiap frame: jangan warisi transform sisa efek frame sebelumnya */
+      ctx.setTransform(1,0,0,1,0,0); /* canvas dipakai ulang tiap frame: jangan warisi transform sisa efek frame sebelumnya */
       var vw=video.videoWidth, vh=video.videoHeight, tr=w/h, sr=vw/vh, sw, sh, sx, sy;
       if(sr>tr){ sh=vh; sw=vh*tr; sx=(vw-sw)/2; sy=0; }
       else{ sw=vw; sh=vw/tr; sx=0; sy=(vh-sh)/2; }
@@ -2538,7 +2538,7 @@
     var src=grabTileSource();
     tilePaintList.forEach(function(t){
       var ctx=t.canvas.getContext("2d");
-      ctx.setTransform(1,0,0,1); /* tile digambar ulang berkala di canvas yang sama */
+      ctx.setTransform(1,0,0,1,0,0); /* tile digambar ulang berkala di canvas yang sama */
       ctx.save();
       try{ var css=scaledCssFor(t.filter); ctx.filter=(!css||css==="none") ? "none" : css; }catch(e){}
       ctx.drawImage(src, 0, 0, t.canvas.width, t.canvas.height);
@@ -3312,7 +3312,7 @@
   function drawRecFrame(){
     if(!video.videoWidth) return;
     var W=360,H=480,ctx=recCanvas.getContext("2d");
-    ctx.setTransform(1,0,0,1); /* recCanvas dipakai ulang selama perekaman BTS */
+    ctx.setTransform(1,0,0,1,0,0); /* recCanvas dipakai ulang selama perekaman BTS */
     var vw=video.videoWidth, vh=video.videoHeight, tr=W/H, sr=vw/vh, sw,sh,sx,sy;
     if(sr>tr){ sh=vh; sw=vh*tr; sx=(vw-sw)/2; sy=0; }
     else{ sw=vw; sh=vw/tr; sx=0; sy=(vh-sh)/2; }
